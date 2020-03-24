@@ -1,0 +1,1208 @@
+
+{
+    "spec": {
+        "name": "lamp_v4_bp",
+        "description": "",
+        "resources": {
+            "type": "USER",
+            "service_definition_list": [
+                {
+                    "name": "MySQLService",
+                    "description": "",
+                    "port_list": [],
+                    "singleton": false,
+                    "tier": "",
+                    "depends_on_list": [],
+                    "variable_list": [],
+                    "action_list": [
+                        {
+                            "name": "action_create",
+                            "description": "Application MySQL database server",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "4cae32b4_runbook",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "ae55aec9_dag"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "ae55aec9_dag",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_MySQLService_action_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_MySQLService_action_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_MySQLService_action_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_start",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_MySQLService_action_start",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_MySQLService_action_start"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_MySQLService_action_start",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_stop",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_MySQLService_action_stop",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_MySQLService_action_stop"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_MySQLService_action_stop",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_restart",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_MySQLService_action_restart",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_MySQLService_action_restart"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_MySQLService_action_restart",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_soft_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_MySQLService_action_soft_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_MySQLService_action_soft_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_MySQLService_action_soft_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "MySQLService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        }
+                    ],
+                    "container_spec": {}
+                },
+                {
+                    "name": "ApachePHPService",
+                    "description": "",
+                    "port_list": [],
+                    "singleton": false,
+                    "tier": "",
+                    "depends_on_list": [
+                        {
+                            "kind": "app_service",
+                            "name": "MySQLService"
+                        }
+                    ],
+                    "variable_list": [],
+                    "action_list": [
+                        {
+                            "name": "action_create",
+                            "description": "Application web servers",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "b1bc52a4_runbook",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "dc062223_dag"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "dc062223_dag",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_ApachePHPService_action_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_ApachePHPService_action_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_ApachePHPService_action_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_start",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_ApachePHPService_action_start",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_ApachePHPService_action_start"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_ApachePHPService_action_start",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_stop",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_ApachePHPService_action_stop",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_ApachePHPService_action_stop"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_ApachePHPService_action_stop",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_restart",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_ApachePHPService_action_restart",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_ApachePHPService_action_restart"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_ApachePHPService_action_restart",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_soft_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_ApachePHPService_action_soft_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_ApachePHPService_action_soft_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_ApachePHPService_action_soft_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "ApachePHPService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        }
+                    ],
+                    "container_spec": {}
+                },
+                {
+                    "name": "HAProxyService",
+                    "description": "",
+                    "port_list": [],
+                    "singleton": false,
+                    "tier": "",
+                    "depends_on_list": [
+                        {
+                            "kind": "app_service",
+                            "name": "ApachePHPService"
+                        }
+                    ],
+                    "variable_list": [],
+                    "action_list": [
+                        {
+                            "name": "action_create",
+                            "description": "HAProxy application entry point",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "7a737198_runbook",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "c7db7bf5_dag"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "c7db7bf5_dag",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_HAProxyService_action_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_HAProxyService_action_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_HAProxyService_action_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_start",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_HAProxyService_action_start",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_HAProxyService_action_start"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_HAProxyService_action_start",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_stop",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_HAProxyService_action_stop",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_HAProxyService_action_stop"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_HAProxyService_action_stop",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_restart",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_HAProxyService_action_restart",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_HAProxyService_action_restart"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_HAProxyService_action_restart",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        },
+                        {
+                            "name": "action_soft_delete",
+                            "description": "",
+                            "type": "system",
+                            "critical": true,
+                            "runbook": {
+                                "name": "Runbook_for_Service_HAProxyService_action_soft_delete",
+                                "description": "",
+                                "main_task_local_reference": {
+                                    "kind": "app_task",
+                                    "name": "DAG_Task_for_Service_HAProxyService_action_soft_delete"
+                                },
+                                "task_definition_list": [
+                                    {
+                                        "name": "DAG_Task_for_Service_HAProxyService_action_soft_delete",
+                                        "description": "",
+                                        "type": "DAG",
+                                        "target_any_local_reference": {
+                                            "kind": "app_service",
+                                            "name": "HAProxyService"
+                                        },
+                                        "attrs": {
+                                            "edges": []
+                                        },
+                                        "child_tasks_local_reference_list": [],
+                                        "variable_list": []
+                                    }
+                                ],
+                                "variable_list": []
+                            }
+                        }
+                    ],
+                    "container_spec": {}
+                }
+            ],
+            "package_definition_list": [
+                {
+                    "name": "MySQLPackage",
+                    "description": "",
+                    "type": "CUSTOM",
+                    "options": {
+                        "install_runbook": {
+                            "name": "fab2a227_runbook",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "405bcdd6_dag"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "405bcdd6_dag",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "MySQLService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [
+                                        {
+                                            "kind": "app_task",
+                                            "name": "PackageInstallTask"
+                                        }
+                                    ],
+                                    "variable_list": []
+                                },
+                                {
+                                    "name": "PackageInstallTask",
+                                    "description": "",
+                                    "type": "EXEC",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "MySQLService"
+                                    },
+                                    "attrs": {
+                                        "script_type": "sh",
+                                        "script": "#!/bin/bash\nset -ex\n\nsudo yum install -y --quiet \"http://repo.mysql.com/mysql80-community-release-el7.rpm\"\nsudo yum update -y --quiet\nsudo yum install -y --quiet sshpass mysql-community-server\n\n\nsudo systemctl enable mysqld\nsudo systemctl start mysqld\n\n#Fix to obtain temp password and set it to blank\npassword=$(sudo grep -oP 'temporary password(.*): \\K(\\S+)' /var/log/mysqld.log)\nsudo mysqladmin --user=root --password=\"$password\" password aaBB**cc1122\nsudo mysql --user=root --password=aaBB**cc1122 -e \"UNINSTALL COMPONENT 'file://component_validate_password'\"\nsudo mysqladmin --user=root --password=\"aaBB**cc1122\" password \"\"\n\n# -*- Mysql secure installation\nmysql -u root<<-EOF\nALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '@@{MYSQL_PASSWORD}@@';\nDELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');\nDELETE FROM mysql.user WHERE User='';\nDELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';\nFLUSH PRIVILEGES;\nEOF\n"
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        },
+                        "uninstall_runbook": {
+                            "name": "Runbook_for_Package_MySQLPackage_action_uninstall",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "DAG_Task_for_Package_MySQLPackage_action_uninstall"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "DAG_Task_for_Package_MySQLPackage_action_uninstall",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "MySQLService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        }
+                    },
+                    "service_local_reference_list": [
+                        {
+                            "kind": "app_service",
+                            "name": "MySQLService"
+                        }
+                    ],
+                    "variable_list": [],
+                    "version": ""
+                },
+                {
+                    "name": "ApachePHPPackage",
+                    "description": "",
+                    "type": "CUSTOM",
+                    "options": {
+                        "install_runbook": {
+                            "name": "58a41935_runbook",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "e5616982_dag"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "e5616982_dag",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "ApachePHPService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [
+                                        {
+                                            "kind": "app_task",
+                                            "name": "PackageInstallTask"
+                                        }
+                                    ],
+                                    "variable_list": []
+                                },
+                                {
+                                    "name": "PackageInstallTask",
+                                    "description": "",
+                                    "type": "EXEC",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "ApachePHPService"
+                                    },
+                                    "attrs": {
+                                        "script_type": "sh",
+                                        "script": "#!/bin/bash\nset -ex\n# -*- Install httpd and php\nsudo yum update -y\nsudo yum -y install epel-release\nsudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm\nsudo yum install -y httpd php56w php56w-mysql\n\necho \"<IfModule mod_dir.c>\n        DirectoryIndex index.php index.html index.cgi index.pl index.php index.xhtml index.htm\n</IfModule>\" | sudo tee /etc/httpd/conf.modules.d/dir.conf\n\necho \"<?php\nphpinfo();\n?>\" | sudo tee /var/www/html/info.php \nsudo systemctl restart httpd\nsudo systemctl enable httpd"
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        },
+                        "uninstall_runbook": {
+                            "name": "Runbook_for_Package_ApachePHPPackage_action_uninstall",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "DAG_Task_for_Package_ApachePHPPackage_action_uninstall"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "DAG_Task_for_Package_ApachePHPPackage_action_uninstall",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "ApachePHPService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        }
+                    },
+                    "service_local_reference_list": [
+                        {
+                            "kind": "app_service",
+                            "name": "ApachePHPService"
+                        }
+                    ],
+                    "variable_list": [],
+                    "version": ""
+                },
+                {
+                    "name": "HAProxyPackage",
+                    "description": "",
+                    "type": "CUSTOM",
+                    "options": {
+                        "install_runbook": {
+                            "name": "72f929ce_runbook",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "e32b10c1_dag"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "e32b10c1_dag",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "HAProxyService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [
+                                        {
+                                            "kind": "app_task",
+                                            "name": "PackageInstallTask"
+                                        }
+                                    ],
+                                    "variable_list": []
+                                },
+                                {
+                                    "name": "PackageInstallTask",
+                                    "description": "",
+                                    "type": "EXEC",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "HAProxyService"
+                                    },
+                                    "attrs": {
+                                        "script_type": "sh",
+                                        "script": "#!/bin/bash\nset -ex\n\nsudo setenforce 0\nsudo sed -i 's/permissive/disabled/' /etc/sysconfig/selinux\n\nport=80\nsudo yum update -y\nsudo yum install -y haproxy\n\necho \"global\n  log 127.0.0.1 local0\n  log 127.0.0.1 local1 notice\n  maxconn 4096\n  quiet\n  user haproxy\n  group haproxy\ndefaults\n  log     global\n  mode    http\n  retries 3\n  timeout client 50s\n  timeout connect 5s\n  timeout server 50s\n  option dontlognull\n  option httplog\n  option redispatch\n  balance  roundrobin\n# Set up application listeners here.\nlisten stats 0.0.0.0:8080\n  mode http\n  log global\n  stats enable\n  stats hide-version\n  stats refresh 30s\n  stats show-node\n  stats uri /stats\nlisten admin\n  bind 127.0.0.1:22002\n  mode http\n  stats uri /\nfrontend http\n  maxconn 2000\n  bind 0.0.0.0:80\n  default_backend servers-http\nbackend servers-http\" | sudo tee /etc/haproxy/haproxy.cfg\n\nsudo sed -i 's/server host-/#server host-/g' /etc/haproxy/haproxy.cfg\n\nhosts=$(echo \"@@{APACHE_PHP.address}@@\" | sed 's/^,//' | sed 's/,$//' | tr \",\" \"\\n\")\n\n\nfor host in $hosts\ndo\n   echo \"  server host-${host} ${host}:${port} weight 1 maxconn 100 check\" | sudo tee -a /etc/haproxy/haproxy.cfg\ndone\n\nsudo systemctl daemon-reload\nsudo systemctl enable haproxy\nsudo systemctl restart haproxy\n"
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        },
+                        "uninstall_runbook": {
+                            "name": "Runbook_for_Package_HAProxyPackage_action_uninstall",
+                            "description": "",
+                            "main_task_local_reference": {
+                                "kind": "app_task",
+                                "name": "DAG_Task_for_Package_HAProxyPackage_action_uninstall"
+                            },
+                            "task_definition_list": [
+                                {
+                                    "name": "DAG_Task_for_Package_HAProxyPackage_action_uninstall",
+                                    "description": "",
+                                    "type": "DAG",
+                                    "target_any_local_reference": {
+                                        "kind": "app_service",
+                                        "name": "HAProxyService"
+                                    },
+                                    "attrs": {
+                                        "edges": []
+                                    },
+                                    "child_tasks_local_reference_list": [],
+                                    "variable_list": []
+                                }
+                            ],
+                            "variable_list": []
+                        }
+                    },
+                    "service_local_reference_list": [
+                        {
+                            "kind": "app_service",
+                            "name": "HAProxyService"
+                        }
+                    ],
+                    "variable_list": [],
+                    "version": ""
+                },
+                {
+                    "name": "CENTOS_7_CLOUD",
+                    "description": "",
+                    "type": "SUBSTRATE_IMAGE",
+                    "options": {
+                        "name": "CentOS-7-x86_64-1810.qcow2",
+                        "description": "",
+                        "resources": {
+                            "image_type": "DISK_IMAGE",
+                            "source_uri": "http://download.nutanix.com/calm/CentOS-7-x86_64-1810.qcow2",
+                            "architecture": "X86_64",
+                            "version": {
+                                "product_version": "7",
+                                "product_name": "CentOS"
+                            },
+                            "checksum": {}
+                        }
+                    },
+                    "service_local_reference_list": [],
+                    "variable_list": [],
+                    "version": ""
+                }
+            ],
+            "published_service_definition_list": [],
+            "substrate_definition_list": [
+                {
+                    "name": "MySQLSubstrate",
+                    "description": "",
+                    "type": "AHV_VM",
+                    "os_type": "Linux",
+                    "create_spec": {
+                        "categories": {},
+                        "name": "MYSQL",
+                        "resources": {
+                            "account_uuid": "9ce13bb9-d6bc-4f22-af0a-8de188856abe",
+                            "boot_config": {
+                                "boot_device": {
+                                    "disk_address": {
+                                        "adapter_type": "SCSI",
+                                        "device_index": 0
+                                    }
+                                }
+                            },
+                            "disk_list": [
+                                {
+                                    "data_source_reference": {
+                                        "kind": "app_package",
+                                        "name": "CENTOS_7_CLOUD"
+                                    },
+                                    "device_properties": {
+                                        "device_type": "DISK",
+                                        "disk_address": {
+                                            "adapter_type": "SCSI",
+                                            "device_index": 0
+                                        }
+                                    },
+                                    "disk_size_mib": 0
+                                }
+                            ],
+                            "guest_customization": {
+                                "cloud_init": {
+                                    "user_data": "#cloud-config\nusers:\n- name: centos\n  ssh-authorized-keys:\n  - '@@{CENTOS.public_key}@@'\n  sudo:\n  - ALL=(ALL) NOPASSWD:ALL\n"
+                                }
+                            },
+                            "memory_size_mib": 4096,
+                            "nic_list": [
+                                {
+                                    "ip_endpoint_list": [],
+                                    "network_function_nic_type": "INGRESS",
+                                    "nic_type": "NORMAL_NIC",
+                                    "subnet_reference": {
+                                        "kind": "subnet",
+                                        "uuid": "f5606fed-2c33-45e8-9ccf-303db6eb93d8"
+                                    }
+                                }
+                            ],
+                            "num_sockets": 2,
+                            "num_vcpus_per_socket": 1
+                        }
+                    },
+                    "variable_list": [],
+                    "action_list": [],
+                    "readiness_probe": {
+                        "connection_type": "SSH",
+                        "connection_port": 22,
+                        "connection_protocol": "",
+                        "login_credential_local_reference": {
+                            "kind": "app_credential",
+                            "name": "sshkey"
+                        },
+                        "timeout_secs": "",
+                        "delay_secs": "60",
+                        "retries": "5",
+                        "address": "@@{platform.status.resources.nic_list[0].ip_endpoint_list[0].ip}@@",
+                        "disable_readiness_probe": false
+                    }
+                },
+                {
+                    "name": "ApachePHPSubstrate",
+                    "description": "",
+                    "type": "AHV_VM",
+                    "os_type": "Linux",
+                    "create_spec": {
+                        "categories": {},
+                        "name": "APACHE_PHP@@{calm_array_index}@@",
+                        "resources": {
+                            "account_uuid": "9ce13bb9-d6bc-4f22-af0a-8de188856abe",
+                            "boot_config": {
+                                "boot_device": {
+                                    "disk_address": {
+                                        "adapter_type": "SCSI",
+                                        "device_index": 0
+                                    }
+                                }
+                            },
+                            "disk_list": [
+                                {
+                                    "data_source_reference": {
+                                        "kind": "app_package",
+                                        "name": "CENTOS_7_CLOUD"
+                                    },
+                                    "device_properties": {
+                                        "device_type": "DISK",
+                                        "disk_address": {
+                                            "adapter_type": "SCSI",
+                                            "device_index": 0
+                                        }
+                                    },
+                                    "disk_size_mib": 0
+                                }
+                            ],
+                            "guest_customization": {
+                                "cloud_init": {
+                                    "user_data": "#cloud-config\nusers:\n- name: centos\n  ssh-authorized-keys:\n  - '@@{CENTOS.public_key}@@'\n  sudo:\n  - ALL=(ALL) NOPASSWD:ALL\n"
+                                }
+                            },
+                            "memory_size_mib": 4096,
+                            "nic_list": [
+                                {
+                                    "ip_endpoint_list": [],
+                                    "network_function_nic_type": "INGRESS",
+                                    "nic_type": "NORMAL_NIC",
+                                    "subnet_reference": {
+                                        "kind": "subnet",
+                                        "uuid": "f5606fed-2c33-45e8-9ccf-303db6eb93d8"
+                                    }
+                                }
+                            ],
+                            "num_sockets": 2,
+                            "num_vcpus_per_socket": 2
+                        }
+                    },
+                    "variable_list": [],
+                    "action_list": [],
+                    "readiness_probe": {
+                        "connection_type": "SSH",
+                        "connection_port": 22,
+                        "connection_protocol": "",
+                        "login_credential_local_reference": {
+                            "kind": "app_credential",
+                            "name": "sshkey"
+                        },
+                        "timeout_secs": "",
+                        "delay_secs": "60",
+                        "retries": "5",
+                        "address": "@@{platform.status.resources.nic_list[0].ip_endpoint_list[0].ip}@@",
+                        "disable_readiness_probe": false
+                    }
+                },
+                {
+                    "name": "HAProxySubstrate",
+                    "description": "",
+                    "type": "AHV_VM",
+                    "os_type": "Linux",
+                    "create_spec": {
+                        "categories": {},
+                        "name": "HAPROXY",
+                        "resources": {
+                            "account_uuid": "9ce13bb9-d6bc-4f22-af0a-8de188856abe",
+                            "boot_config": {
+                                "boot_device": {
+                                    "disk_address": {
+                                        "adapter_type": "SCSI",
+                                        "device_index": 0
+                                    }
+                                }
+                            },
+                            "disk_list": [
+                                {
+                                    "data_source_reference": {
+                                        "kind": "app_package",
+                                        "name": "CENTOS_7_CLOUD"
+                                    },
+                                    "device_properties": {
+                                        "device_type": "DISK",
+                                        "disk_address": {
+                                            "adapter_type": "SCSI",
+                                            "device_index": 0
+                                        }
+                                    },
+                                    "disk_size_mib": 0
+                                }
+                            ],
+                            "guest_customization": {
+                                "cloud_init": {
+                                    "user_data": "#cloud-config\nusers:\n- name: centos\n  ssh-authorized-keys:\n  - '@@{CENTOS.public_key}@@'\n  sudo:\n  - ALL=(ALL) NOPASSWD:ALL\n"
+                                }
+                            },
+                            "memory_size_mib": 4096,
+                            "nic_list": [
+                                {
+                                    "ip_endpoint_list": [],
+                                    "network_function_nic_type": "INGRESS",
+                                    "nic_type": "NORMAL_NIC",
+                                    "subnet_reference": {
+                                        "kind": "subnet",
+                                        "uuid": "f5606fed-2c33-45e8-9ccf-303db6eb93d8"
+                                    }
+                                }
+                            ],
+                            "num_sockets": 2,
+                            "num_vcpus_per_socket": 2
+                        }
+                    },
+                    "variable_list": [],
+                    "action_list": [],
+                    "readiness_probe": {
+                        "connection_type": "SSH",
+                        "connection_port": 22,
+                        "connection_protocol": "",
+                        "login_credential_local_reference": {
+                            "kind": "app_credential",
+                            "name": "sshkey"
+                        },
+                        "timeout_secs": "",
+                        "delay_secs": "60",
+                        "retries": "5",
+                        "address": "@@{platform.status.resources.nic_list[0].ip_endpoint_list[0].ip}@@",
+                        "disable_readiness_probe": false
+                    }
+                }
+            ],
+            "credential_definition_list": [
+                {
+                    "name": "sshkey",
+                    "description": "",
+                    "type": "PASSWORD",
+                    "username": "centos",
+                    "secret": {
+                        "attrs": {
+                            "is_secret_modified": true
+                        },
+                        "value": ""
+                    },
+                    "default": true
+                }
+            ],
+            "app_profile_list": [
+                {
+                    "name": "Default",
+                    "deployment_create_list": [
+                        {
+                            "published_service_local_reference_list": [],
+                            "package_local_reference_list": [
+                                {
+                                    "kind": "app_package",
+                                    "name": "MySQLPackage"
+                                }
+                            ],
+                            "substrate_local_reference": {
+                                "kind": "app_substrate",
+                                "name": "MySQLSubstrate"
+                            },
+                            "depends_on_list": [],
+                            "min_replicas": "1",
+                            "max_replicas": "1",
+                            "type": "GREENFIELD",
+                            "name": "MySQLDeployment",
+                            "options": {}
+                        },
+                        {
+                            "published_service_local_reference_list": [],
+                            "package_local_reference_list": [
+                                {
+                                    "kind": "app_package",
+                                    "name": "ApachePHPPackage"
+                                }
+                            ],
+                            "substrate_local_reference": {
+                                "kind": "app_substrate",
+                                "name": "ApachePHPSubstrate"
+                            },
+                            "depends_on_list": [],
+                            "min_replicas": "2",
+                            "max_replicas": "3",
+                            "type": "GREENFIELD",
+                            "name": "ApachePHPDeployment",
+                            "options": {}
+                        },
+                        {
+                            "published_service_local_reference_list": [],
+                            "package_local_reference_list": [
+                                {
+                                    "kind": "app_package",
+                                    "name": "HAProxyPackage"
+                                }
+                            ],
+                            "substrate_local_reference": {
+                                "kind": "app_substrate",
+                                "name": "HAProxySubstrate"
+                            },
+                            "depends_on_list": [],
+                            "min_replicas": "1",
+                            "max_replicas": "1",
+                            "type": "GREENFIELD",
+                            "name": "HAProxyDeployment",
+                            "options": {}
+                        }
+                    ],
+                    "variable_list": [],
+                    "action_list": []
+                }
+            ],
+            "client_attrs": {},
+            "default_credential_local_reference": null
+        }
+    },
+    "api_version": "3.0",
+    "metadata": {
+        "spec_version": 1,
+        "kind": "blueprint",
+        "name": "lamp_v4_bp",
+        "project_reference": {
+            "type": "project",
+            "uuid": "e4f8329c-bf9c-4dd1-8f33-042ce6b86eee",
+            "name": "ntnxdemo-no-aws"
+        }
+    }
+}

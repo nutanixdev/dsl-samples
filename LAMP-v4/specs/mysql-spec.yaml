@@ -1,0 +1,40 @@
+categories: {}
+name: MYSQL
+resources:
+  account_uuid: 9ce13bb9-d6bc-4f22-af0a-8de188856abe
+  boot_config:
+    boot_device:
+      disk_address:
+        adapter_type: SCSI
+        device_index: 0
+  disk_list:
+  - data_source_reference:
+      kind: app_package
+      name: CENTOS_7_CLOUD
+      uuid: 40482233-99e6-8294-c152-8b307b65288a
+    device_properties:
+      device_type: DISK
+      disk_address:
+        adapter_type: SCSI
+        device_index: 0
+    disk_size_mib: 0
+  guest_customization:
+    cloud_init:
+      user_data: |
+        #cloud-config
+        users:
+        - name: centos
+          ssh-authorized-keys:
+          - '@@{CENTOS.public_key}@@'
+          sudo:
+          - ALL=(ALL) NOPASSWD:ALL
+  memory_size_mib: 4096
+  nic_list:
+  - ip_endpoint_list: []
+    network_function_nic_type: INGRESS
+    nic_type: NORMAL_NIC
+    subnet_reference:
+      kind: subnet
+      uuid: f5606fed-2c33-45e8-9ccf-303db6eb93d8
+  num_sockets: 2
+  num_vcpus_per_socket: 1
