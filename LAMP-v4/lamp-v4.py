@@ -3,7 +3,7 @@
     Nutanix Calm DSL blueprint designed to semi-replicate the Calm Marketplace "LAMP" blueprint
 """
 
-import json
+import json, os
 
 from calm.dsl.builtins import (
     ref,
@@ -29,8 +29,8 @@ from calm.dsl.builtins import read_ahv_spec, read_vmw_spec
 # an SSH-based credential
 # this credential will be used as the default credential within the blueprint
 CENTOS_USER = "centos"
-CENTOS_KEY = read_local_file("keys/centos_priv")
-CENTOS_PUBLIC_KEY = read_local_file("keys/centos_pub")
+CENTOS_KEY = read_local_file(os.path.join("keys", "centos_priv"))
+CENTOS_PUBLIC_KEY = read_local_file(os.path.join("keys", "centos_pub"))
 default_credential = basic_cred(
     CENTOS_USER, CENTOS_KEY, name="CENTOS", type="KEY", default=True,
 )
