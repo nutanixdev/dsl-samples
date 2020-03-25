@@ -12,4 +12,5 @@ In addition, please also be advised that these blueprint samples may run and ope
 
 # Change Log
 
+2020.03.25 - Add LAMP, add Nginx + PHP 7.2 blueprints
 2020.03.19 - Repo created
