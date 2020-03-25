@@ -11,7 +11,7 @@ from calm.dsl.builtins import Service, Package, Substrate
 from calm.dsl.builtins import Deployment, Profile, Blueprint
 from calm.dsl.builtins import CalmVariable as Variable
 from calm.dsl.builtins import CalmTask as Task
-from calm.dsl.builtins import action, parallel, ref, basic_cred
+from calm.dsl.builtins import action, ref, basic_cred
 from calm.dsl.builtins import read_local_file
 from calm.dsl.builtins import vm_disk_package, AhvVmDisk, AhvVmNic
 from calm.dsl.builtins import AhvVmGC, AhvVmResources, AhvVm
@@ -44,13 +44,20 @@ class NginxService(Service):
     @action
     def __create__():
         # Step 1
-        Task.Exec.ssh(name="ConfigureBaseVM", filename="scripts/ConfigureBaseVM.sh")
-        Task.Exec.ssh(name="InstallNginx", filename="scripts/InstallNginx.sh")
-        Task.Exec.ssh(name="ConfigureNginx", filename="scripts/ConfigureNginx.sh")
-        Task.Exec.ssh(name="ConfigurePHP", filename="scripts/ConfigurePHP.sh")
-        Task.Exec.ssh(name="InstallPHPComposer", filename="scripts/InstallPHPComposer.sh")
-        Task.Exec.ssh(name="ConfigureFirewall", filename="scripts/ConfigureFirewall.sh")
-        Task.Exec.ssh(name="CreateSite", filename="scripts/CreateSite.sh")
+        Task.Exec.ssh(name="ConfigureBaseVM",
+                      filename="scripts/ConfigureBaseVM.sh")
+        Task.Exec.ssh(name="InstallNginx",
+                      filename="scripts/InstallNginx.sh")
+        Task.Exec.ssh(name="ConfigureNginx",
+                      filename="scripts/ConfigureNginx.sh")
+        Task.Exec.ssh(name="ConfigurePHP",
+                      filename="scripts/ConfigurePHP.sh")
+        Task.Exec.ssh(name="InstallPHPComposer",
+                      filename="scripts/InstallPHPComposer.sh")
+        Task.Exec.ssh(name="ConfigureFirewall",
+                      filename="scripts/ConfigureFirewall.sh")
+        Task.Exec.ssh(name="CreateSite",
+                      filename="scripts/CreateSite.sh")
 
 
 class NginxPackage(Package):
@@ -66,7 +73,8 @@ class NginxVmResources(AhvVmResources):
     vCPUs = 1
     cores_per_vCPU = 1
     disks = [
-        AhvVmDisk.Disk.Scsi.cloneFromVMDiskPackage(CentosPackage, bootable=True),
+        AhvVmDisk.Disk.Scsi.cloneFromVMDiskPackage(CentosPackage,
+                                                   bootable=True),
     ]
     nics = [AhvVmNic.DirectNic.ingress("vlan.0")]
 
@@ -109,16 +117,22 @@ class DefaultProfile(Profile):
     deployments = [NginxDeployment]
 
     # Profile Variables
-    INSTANCE_PUBLIC_KEY = Variable.Simple(read_local_file(os.path.join("keys", "centos_pub")), runtime=True)
+    INSTANCE_PUBLIC_KEY = Variable.Simple(read_local_file(
+        os.path.join("keys",
+                     "centos_pub")), runtime=True)
     HOSTNAME = Variable.Simple("nginx-server", runtime=True)
     ENABLE_ACCESS_LOG = Variable.WithOptions.Predefined.string(
-        ["yes","no"], default="no", is_mandatory=True, runtime=True
+        ["yes", "no"], default="no", is_mandatory=True, runtime=True
     )
     STATIC_EXPIRATION_DAYS = Variable.Simple("365", runtime=True)
 
 
 class NginxBlueprint(Blueprint):
-    """Sample blueprint created with the Nutanix Calm DSL.  This blueprint will deploy Nginx and PHP 7.2 based on some best-practice parameters."""
+    """
+    Sample blueprint created with the Nutanix Calm DSL.
+    This blueprint will deploy Nginx and PHP 7.2 based on
+    some best-practice parameters.
+    """
 
     credentials = [CentosCred]
     services = [NginxService]
