@@ -1,29 +1,25 @@
 """
     LAMP v4
-    Nutanix Calm DSL blueprint designed to semi-replicate the Calm Marketplace "LAMP" blueprint
+    Nutanix Calm DSL blueprint designed to semi-replicate
+    the Calm Marketplace "LAMP" blueprint
 """
 
-import json, os
+import os
 
 from calm.dsl.builtins import (
     ref,
     basic_cred,
-    secret_cred,
-    CalmVariable,
     CalmTask,
     action,
-    parallel,
     CalmVariable as Variable
 )
 from calm.dsl.builtins import Service, Package, Substrate
 from calm.dsl.builtins import Deployment, Profile, Blueprint
 from calm.dsl.builtins import (
-    read_provider_spec,
     read_local_file,
-    read_file,
     vm_disk_package,
 )
-from calm.dsl.builtins import read_ahv_spec, read_vmw_spec
+from calm.dsl.builtins import read_ahv_spec
 
 # use the locally-stored private and public key files to generate
 # an SSH-based credential
@@ -35,20 +31,23 @@ default_credential = basic_cred(
     CENTOS_USER, CENTOS_KEY, name="CENTOS", type="KEY", default=True,
 )
 
+
 class MySQLService(Service):
     @action
     def __create__():
         """Application MySQL database server"""
 
+
 class APACHE_PHP(Service):
 
-    dependencies = [ref(MySQLService)]    
+    dependencies = [ref(MySQLService)]
 
     @action
     def __create__():
         """Application web servers"""
 
         pass
+
 
 class HAProxyService(Service):
 
@@ -57,6 +56,7 @@ class HAProxyService(Service):
     @action
     def __create__():
         """HAProxy application entry point"""
+
 
 class HAProxyPackage(Package):
 
@@ -67,8 +67,11 @@ class HAProxyPackage(Package):
         """Package installation tasks for the HAProxy server"""
 
         CalmTask.Exec.ssh(
-            name="PackageInstallTask", filename="scripts/haproxy-install.sh", target=ref(HAProxyService)
+            name="PackageInstallTask",
+            filename="scripts/haproxy-install.sh",
+            target=ref(HAProxyService)
         )
+
 
 class ApachePHPPackage(Package):
 
@@ -79,8 +82,11 @@ class ApachePHPPackage(Package):
         """Package installation tasks for the Nginx web servers"""
 
         CalmTask.Exec.ssh(
-            name="PackageInstallTask", filename="scripts/apache-php-install.sh", target=ref(APACHE_PHP)
+            name="PackageInstallTask",
+            filename="scripts/apache-php-install.sh",
+            target=ref(APACHE_PHP)
         )
+
 
 class MySQLPackage(Package):
 
@@ -91,10 +97,16 @@ class MySQLPackage(Package):
         """Package installation tasks for the MySQL database server"""
 
         CalmTask.Exec.ssh(
-            name="PackageInstallTask", filename="scripts/mysql-install.sh", target=ref(MySQLService)
+            name="PackageInstallTask",
+            filename="scripts/mysql-install.sh",
+            target=ref(MySQLService)
         )
 
-# disk image that will be used as the base for all VMs/services in this applicationb
+
+"""
+disk image that will be used as the base
+for all VMs/services in this applicationb
+"""
 CENTOS_7_CLOUD = vm_disk_package(
     name="CENTOS_7_CLOUD",
     description="",
@@ -130,6 +142,7 @@ class MySQLSubstrate(Substrate):
     }
     readiness_probe["credential"] = ref(default_credential)
 
+
 class ApachePHPSubstrate(Substrate):
 
     os_type = "Linux"
@@ -147,7 +160,8 @@ class ApachePHPSubstrate(Substrate):
         "address": "@@{platform.status.resources.nic_list[0].ip_endpoint_list[0].ip}@@",
         "disabled": False,
     }
-    readiness_probe["credential"] = ref(default_credential)   
+    readiness_probe["credential"] = ref(default_credential)
+
 
 class HAProxySubstrate(Substrate):
 
@@ -168,6 +182,7 @@ class HAProxySubstrate(Substrate):
     }
     readiness_probe["credential"] = ref(default_credential)
 
+
 class MySQLDeployment(Deployment):
 
     min_replicas = "1"
@@ -175,6 +190,7 @@ class MySQLDeployment(Deployment):
 
     packages = [ref(MySQLPackage)]
     substrate = ref(MySQLSubstrate)
+
 
 class ApachePHPDeployment(Deployment):
 
@@ -184,18 +200,19 @@ class ApachePHPDeployment(Deployment):
     packages = [ref(ApachePHPPackage)]
     substrate = ref(ApachePHPSubstrate)
 
+
 class HAProxyDeployment(Deployment):
 
     min_replicas = "1"
     max_replicas = "1"
 
     packages = [ref(HAProxyPackage)]
-    substrate = ref(HAProxySubstrate)    
+    substrate = ref(HAProxySubstrate)
 
 
 class Default(Profile):
 
-    deployments = [ MySQLDeployment, ApachePHPDeployment, HAProxyDeployment ]
+    deployments = [MySQLDeployment, ApachePHPDeployment, HAProxyDeployment]
     # runtime variable for user to provide MySQL database password
     MYSQL_PASSWORD = Variable.Simple.Secret("", runtime=True)
 
