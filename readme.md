@@ -2,6 +2,14 @@
 
 Collection of Nutanix Calm DSL Blueprint samples for use by Nutanix staff, customers and partners.
 
+# Assumptions
+
+By using the DSL samples in this repository it is assumed you have already setup the Nutanix Calm DSL in your local environment.
+
+If you have not yet installed the Nutanix Calm DSL, please see the [Nutanix Calm DSL GitHub repository](https://github.com/nutanix/calm-dsl) for instructions.
+
+For Ubuntu systems, please also refer to the Nutanix.dev article titled [Introducing the Nutanix Calm DSL](https://www.nutanix.dev/2020/03/17/introducing-the-nutanix-calm-dsl/).
+
 # Support
 
 The Nutanix Calm DSL Blueprint samples are *unofficial* and are not supported or maintained by Nutanix in any way.
