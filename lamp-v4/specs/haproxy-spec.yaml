@@ -1,7 +1,6 @@
 categories: {}
 name: HAPROXY
 resources:
-  account_uuid: 9ce13bb9-d6bc-4f22-af0a-8de188856abe
   boot_config:
     boot_device:
       disk_address:
@@ -11,7 +10,6 @@ resources:
   - data_source_reference:
       kind: app_package
       name: CENTOS_7_CLOUD
-      uuid: 40482233-99e6-8294-c152-8b307b65288a
     device_properties:
       device_type: DISK
       disk_address:
