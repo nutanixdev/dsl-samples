@@ -1,6 +1,6 @@
 """
     LAMP v4
-    Nutanix Calm DSL blueprint designed to semi-replicate
+    Nutanix Calm DSL blueprint designed to replicate
     the Calm Marketplace "LAMP" blueprint
 """
 
@@ -352,7 +352,8 @@ class Default(Profile):
 
 
 class lamp_v4_bp(Blueprint):
-    """Application entry point: http://<haproxy_address>, HA Proxy Stats: http://<haproxy_address>:8080/stats"""
+    """Application entry point: http://<haproxy_address>,
+    HA Proxy Stats: http://<haproxy_address>:8080/stats"""
 
     services = [MySQLService, APACHE_PHP, HAProxyService]
     packages = [MySQLPackage, ApachePHPPackage, HAProxyPackage, CENTOS_7_CLOUD]
