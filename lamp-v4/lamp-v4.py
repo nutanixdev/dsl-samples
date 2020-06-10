@@ -36,7 +36,7 @@ default_credential = basic_cred(
 )
 
 
-class MySQLService(Service):
+class AHV_MySQLService(Service):
     """
     Service definition for our MySQL server
     Note the VM's installation package is specified further down within this
@@ -48,7 +48,7 @@ class MySQLService(Service):
         """Application MySQL database server"""
 
 
-class APACHE_PHP(Service):
+class AHV_ApachePHPService(Service):
     """
     Similar to the MySQL server, this is the definition for our Apache PHP
     server.  All VM specs are provided the same way, but note the Apache PHP
@@ -58,7 +58,7 @@ class APACHE_PHP(Service):
     deploy this one.
     """
 
-    dependencies = [ref(MySQLService)]
+    dependencies = [ref(AHV_MySQLService)]
 
     @action
     def __create__():
@@ -67,16 +67,16 @@ class APACHE_PHP(Service):
         pass
 
 
-class HAProxyService(Service):
+class AHV_HAProxyService(Service):
 
-    dependencies = [ref(APACHE_PHP)]
+    dependencies = [ref(AHV_ApachePHPService)]
 
     @action
     def __create__():
         """HAProxy application entry point"""
 
 
-class HAProxyPackage(Package):
+class AHV_HAProxyPackage(Package):
     """
     Here we are specifying the packages that will run at various steps during
     the deployment.  In this example, we are configuring a Package Install Task
@@ -85,7 +85,7 @@ class HAProxyPackage(Package):
     package will be associated with
     """
 
-    services = [ref(HAProxyService)]
+    services = [ref(AHV_HAProxyService)]
 
     @action
     def __install__():
@@ -94,13 +94,13 @@ class HAProxyPackage(Package):
         CalmTask.Exec.ssh(
             name="PackageInstallTask",
             filename="scripts/haproxy-install.sh",
-            target=ref(HAProxyService)
+            target=ref(AHV_HAProxyService)
         )
 
 
-class ApachePHPPackage(Package):
+class AHV_ApachePHPPackage(Package):
 
-    services = [ref(APACHE_PHP)]
+    services = [ref(AHV_ApachePHPService)]
 
     @action
     def __install__():
@@ -109,13 +109,13 @@ class ApachePHPPackage(Package):
         CalmTask.Exec.ssh(
             name="PackageInstallTask",
             filename="scripts/apache-php-install.sh",
-            target=ref(APACHE_PHP)
+            target=ref(AHV_ApachePHPService)
         )
 
 
-class MySQLPackage(Package):
+class AHV_MySQLPackage(Package):
 
-    services = [ref(MySQLService)]
+    services = [ref(AHV_MySQLService)]
 
     @action
     def __install__():
@@ -124,7 +124,7 @@ class MySQLPackage(Package):
         CalmTask.Exec.ssh(
             name="PackageInstallTask",
             filename="scripts/mysql-install.sh",
-            target=ref(MySQLService)
+            target=ref(AHV_MySQLService)
         )
 
 
@@ -151,14 +151,14 @@ CENTOS_7_CLOUD = vm_disk_package(
 class MySQLSubstrate(Substrate):
     """
     The Calm Substrate outlines the "wrapper" for our VM, e.g. the VM's
-    operating system, the VM spec from specs/mysql-spec.yaml, the disks
+    operating system, the VM spec from specs/ahv/ahv-mysql-spec.yaml, the disks
     the VM will have attached etc.
     """
 
     os_type = "Linux"
     provider_type = "AHV_VM"
     provider_spec = read_ahv_spec(
-        "specs/mysql-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
+        "specs/ahv/ahv-mysql-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
     )
     readiness_probe = {
         "connection_type": "SSH",
@@ -173,12 +173,12 @@ class MySQLSubstrate(Substrate):
     readiness_probe["credential"] = ref(default_credential)
 
 
-class ApachePHPSubstrate(Substrate):
+class AHV_ApachePHPSubstrate(Substrate):
 
     os_type = "Linux"
     provider_type = "AHV_VM"
     provider_spec = read_ahv_spec(
-        "specs/apache-php-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
+        "specs/ahv/ahv-apache-php-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
     )
     readiness_probe = {
         "connection_type": "SSH",
@@ -193,12 +193,12 @@ class ApachePHPSubstrate(Substrate):
     readiness_probe["credential"] = ref(default_credential)
 
 
-class HAProxySubstrate(Substrate):
+class AHV_HAProxySubstrate(Substrate):
 
     os_type = "Linux"
     provider_type = "AHV_VM"
     provider_spec = read_ahv_spec(
-        "specs/haproxy-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
+        "specs/ahv/ahv-haproxy-spec.yaml", disk_packages={1: CENTOS_7_CLOUD}
     )
     readiness_probe = {
         "connection_type": "SSH",
@@ -213,7 +213,7 @@ class HAProxySubstrate(Substrate):
     readiness_probe["credential"] = ref(default_credential)
 
 
-class MySQLDeployment(Deployment):
+class AHV_MySQLDeployment(Deployment):
     """
     The Calm DSL "Deployment" will allow us to specify things like min and max
     replicas, a key setting that will be used when a VM array is required.
@@ -224,31 +224,31 @@ class MySQLDeployment(Deployment):
     min_replicas = "1"
     max_replicas = "1"
 
-    packages = [ref(MySQLPackage)]
+    packages = [ref(AHV_MySQLPackage)]
     substrate = ref(MySQLSubstrate)
 
 
-class ApachePHPDeployment(Deployment):
+class AHV_ApachePHPDeployment(Deployment):
 
     min_replicas = "2"
     max_replicas = "3"
 
-    packages = [ref(ApachePHPPackage)]
-    substrate = ref(ApachePHPSubstrate)
+    packages = [ref(AHV_ApachePHPPackage)]
+    substrate = ref(AHV_ApachePHPSubstrate)
 
 
-class HAProxyDeployment(Deployment):
+class AHV_HAProxyDeployment(Deployment):
 
     min_replicas = "1"
     max_replicas = "1"
 
-    packages = [ref(HAProxyPackage)]
-    substrate = ref(HAProxySubstrate)
+    packages = [ref(AHV_HAProxyPackage)]
+    substrate = ref(AHV_HAProxySubstrate)
 
 
 class Default(Profile):
 
-    deployments = [MySQLDeployment, ApachePHPDeployment, HAProxyDeployment]
+    deployments = [AHV_MySQLDeployment, AHV_ApachePHPDeployment, AHV_HAProxyDeployment]
     # runtime variable for user to provide MySQL database password
     MYSQL_PASSWORD = Variable.Simple.Secret("", runtime=True)
 
@@ -267,7 +267,7 @@ class Default(Profile):
         COUNT = Variable.Simple.int("1", runtime=True)
 
         CalmTask.Scaling.scale_out(
-            "@@{COUNT}@@", target=ref(ApachePHPDeployment), name="Scale Out"
+            "@@{COUNT}@@", target=ref(AHV_ApachePHPDeployment), name="Scale Out"
         )
 
         """
@@ -278,7 +278,7 @@ class Default(Profile):
         CalmTask.Exec.ssh(
             name="ConfigureHAProxy",
             filename="scripts/haproxy-scaleout.sh",
-            target=ref(HAProxyService),
+            target=ref(AHV_HAProxyService),
         )
 
     @action
@@ -292,7 +292,7 @@ class Default(Profile):
         COUNT = Variable.Simple.int("1", runtime=True)
 
         CalmTask.Scaling.scale_in(
-            "@@{COUNT}@@", target=ref(ApachePHPDeployment), name="Scale In"
+            "@@{COUNT}@@", target=ref(AHV_ApachePHPDeployment), name="Scale In"
         )
 
         """
@@ -303,7 +303,7 @@ class Default(Profile):
         CalmTask.Exec.ssh(
             name="ConfigureHAProxy",
             filename="scripts/haproxy-scalein.sh",
-            target=ref(HAProxyService),
+            target=ref(AHV_HAProxyService),
         )
 
     @action
@@ -325,7 +325,7 @@ class Default(Profile):
         CalmTask.Exec.ssh(
             name="BackupDatabase",
             filename="scripts/mysql-backup.sh",
-            target=ref(MySQLService),
+            target=ref(AHV_MySQLService),
         )
 
     @action
@@ -347,7 +347,7 @@ class Default(Profile):
         CalmTask.Exec.ssh(
             name="RestoreDatabase",
             filename="scripts/mysql-restore.sh",
-            target=ref(MySQLService),
+            target=ref(AHV_MySQLService),
         )
 
 
@@ -355,8 +355,8 @@ class lamp_v4_bp(Blueprint):
     """Application entry point: http://<haproxy_address>,
     HA Proxy Stats: http://<haproxy_address>:8080/stats"""
 
-    services = [MySQLService, APACHE_PHP, HAProxyService]
-    packages = [MySQLPackage, ApachePHPPackage, HAProxyPackage, CENTOS_7_CLOUD]
-    substrates = [MySQLSubstrate, ApachePHPSubstrate, HAProxySubstrate]
+    services = [AHV_MySQLService, AHV_ApachePHPService, AHV_HAProxyService]
+    packages = [AHV_MySQLPackage, AHV_ApachePHPPackage, AHV_HAProxyPackage, CENTOS_7_CLOUD]
+    substrates = [MySQLSubstrate, AHV_ApachePHPSubstrate, AHV_HAProxySubstrate]
     profiles = [Default]
     credentials = [default_credential]
